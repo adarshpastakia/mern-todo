@@ -1,0 +1,44 @@
+{
+  "UNKNOWN_ROUTE":
+  {
+    "code": 404,
+    "error": "0xFFFF",
+    "message": "Unknown API Route!"
+  },
+  "UNKNOWN_ERROR":
+  {
+    "code": 400,
+    "error": "0x0000",
+    "message": "Unknown Error!"
+  },
+  "UNAUTHORIZED":
+  {
+    "code": 401,
+    "error": "0x0001",
+    "message": "Unauthorized!"
+  },
+  "INVALID_CREDENTIALS":
+  {
+    "code": 400,
+    "error": "0x0002",
+    "message": "Invalid Credentials!"
+  },
+  "NOT_FOUND":
+  {
+    "code": 404,
+    "error": "0x0003",
+    "message": "Not Found!"
+  },
+  "DUPLICATE_KEY":
+  {
+    "code": 400,
+    "error": "0x0004",
+    "message": "Duplicate Key!"
+  },
+  "INVALID_MODEL":
+  {
+    "code": 400,
+    "error": "0x0005",
+    "message": "Validation Error!"
+  }
+}

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+
+  <title>ExpressJS Routing Tester</title>
+
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="./scripts.js"></script>
+</head>
+
+<body>
+  <h1>ExpressJS Routing Tester
+    <a href="swagger" target="_blank">Open Swagger</a>
+  </h1>
+
+  <div class="container">
+    <h3>Authenticate</h3>
+    <small>Token</small>
+    <div><input id="authToken" /></div>
+    <h5>Send Request</h5>
+    <div>
+      <button onclick="testAuthenticator()">Send bad Request</button>
+      <button onclick="testAuthenticator(true)">Send actual Request</button>
+    </div>
+    <h5>Response</h5>
+    <div id="authResponse"></div>
+    <hr/>
+
+    <h3>Get Users</h3>
+    <h5>Send Request</h5>
+    <div>
+      <button onclick="testUsers()">Send unauthorized Request</button>
+      <button onclick="testUsers(true)">Send actual Request</button>
+    </div>
+    <h5>Response</h5>
+    <div id="usersResponse"></div>
+    <hr/>
+
+    <h3>Get User</h3>
+    <small>Missing query call, should fail on server and respond with 500</small>
+    <h5>Send Request</h5>
+    <div>
+      <button onclick="testUser()">Send unauthorized Request</button>
+      <button onclick="testUser(2)">Send bad API Route</button>
+      <button onclick="testUser(true)">Send actual Request</button>
+    </div>
+    <h5>Response</h5>
+    <div id="userResponse"></div>
+  </div>
+</body>
+
+</html>
