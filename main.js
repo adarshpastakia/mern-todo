@@ -21,7 +21,7 @@ app.use(cors({'origin': '*', 'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE', 'prefl
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, '/build')));
 
 // add the routes
 app.use('/api', require('./api/routes'));
