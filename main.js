@@ -45,7 +45,8 @@ app.use((err, req, res) => {
 
 // add spa last to handle any unknown route to redirect to public/index
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/index.html'));
+  res.sendFile(path.join(__dirname, '/build/index.html'));
+  res.end();
 });
 
 // start the api server
@@ -53,8 +54,8 @@ app.get('*', (req, res) => {
 // openssl x509 -req -days 365 -in csr.pem -signkey key.pem -out cert.pem
 const fs = require('fs');
 const options = {
-    key: fs.readFileSync('./key.pem'),
-    cert: fs.readFileSync('./cert.pem')
+    key: fs.readFileSync('./keys/key.pem'),
+    cert: fs.readFileSync('./keys/cert.pem')
 };
 https.createServer(options, app).listen(app.get('ports'), () => {
   console.info('Express server listening on port https//localhost:' + app.get('ports'));
