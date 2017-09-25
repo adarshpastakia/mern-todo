@@ -49,23 +49,29 @@ app.get('*', (req, res) => {
   res.end();
 });
 
-// start the api server
-// openssl req -newkey rsa:2048 -new -nodes -keyout key.pem -out csr.pem
-// openssl x509 -req -days 365 -in csr.pem -signkey key.pem -out cert.pem
-const fs = require('fs');
-const options = {
+
+// for heroku deployment
+if (process.env.PORT) {
+  app.listen(process.env.PORT);
+} else {
+  // start the api server
+  // openssl req -newkey rsa:2048 -new -nodes -keyout key.pem -out csr.pem
+  // openssl x509 -req -days 365 -in csr.pem -signkey key.pem -out cert.pem
+  const fs = require('fs');
+  const options = {
     key: fs.readFileSync('./keys/key.pem'),
     cert: fs.readFileSync('./keys/cert.pem')
-};
-https.createServer(options, app).listen(app.get('ports'), () => {
-  console.info('Express server listening on port https//localhost:' + app.get('ports'));
-});
+  };
+  https.createServer(options, app).listen(app.get('ports'), () => {
+    console.info('Express server listening on port https//localhost:' + app.get('ports'));
+  });
 
-// Redirect from http port 80 to https
-http.createServer(function(req, res) {
-  const secureUrl = req.headers['host'].replace(/:\d+/, ':8443');
-  res.writeHead(301, {"Location": `https://${secureUrl}${req.url}`});
-  res.end();
-}).listen(app.get('port'), () => {
-  console.info('Express server listening on port http//localhost:' + app.get('port'));
-});
+  // Redirect from http port 80 to https
+  http.createServer(function(req, res) {
+    const secureUrl = req.headers['host'].replace(/:\d+/, ':8443');
+    res.writeHead(301, {"Location": `https://${secureUrl}${req.url}`});
+    res.end();
+  }).listen(app.get('port'), () => {
+    console.info('Express server listening on port http//localhost:' + app.get('port'));
+  });
+}
