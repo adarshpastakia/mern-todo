@@ -31,7 +31,7 @@ require('./api/swagger')(app);
 
 // add error handler after all routes
 const isDev = true;
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   console.info("app")
   console.warn(err)
   res.status(500).json({
