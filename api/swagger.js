@@ -20,7 +20,7 @@ module.exports = (app) => {
     schemes: [
       'https', 'http'
     ],
-    host: `https://${app.get('host')}:${app.get('ports')}`,
+    host: ``,
     basePath: '/api'
   };
   // options for the swagger docs
