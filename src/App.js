@@ -141,7 +141,7 @@ class App extends Component {
           <hr/>
 
           <h3>Get User</h3>
-          <small>Missing query call, should fail on server and respond with 500</small>
+          <small>Missing query call, should fail on server and respond with 404</small>
           <h5>Send Request</h5>
           <div>
             <button onClick={() => this.testUser(true)}>Send unauthorized Request</button>
