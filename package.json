@@ -5,10 +5,10 @@
   "main": "main.js",
   "scripts":
   {
-    "start": "npm run start-mongo & npm run start-node & npm run start-react",
-    "start-react": "react-scripts start",
+    "start": "react-scripts start",
     "start-node": "node main.js",
     "start-mongo": "mongod --dbpath .dbcache",
+    "start-all": "npm run start-mongo & npm run start-node & npm start",
     "build": "react-scripts build",
     "test": "jasmine & react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
