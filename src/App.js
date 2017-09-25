@@ -11,7 +11,7 @@ class App extends Component {
     userState: null,
     token: ''
   }
-  baseUrl = 'https://localhost:8443/api'
+  baseUrl = '/api'
   testAuthenticator = (bad) => {
     const body = {
       username: 'user@email.com',
