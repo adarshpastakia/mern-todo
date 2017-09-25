@@ -117,7 +117,7 @@ class DbService {
 
 // Private
 const openConnection = () => {
-  const url = process.env.MONGOLAB_URI || `mongodb://localhost:27017/DbTodo`;
+  const url = process.env.MONGODB_URI || `mongodb://localhost:27017/DbTodo`;
   return new Promise((resolve) => {
     MongoClient.connect(url, (err, db) => {
       if (err)
