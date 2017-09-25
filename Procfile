@@ -1,1 +1,1 @@
-web: npm run build;node main.js
+web: node main.js
