@@ -53,7 +53,9 @@ app.get('*', (req, res) => {
 
 // for heroku deployment
 if (process.env.PORT) {
-  app.listen(process.env.PORT);
+  app.listen(process.env.PORT, () => {
+    console.info('Express server listening on port ' + process.env.PORT);
+  });
 } else {
   // start the api server
   // openssl req -newkey rsa:2048 -new -nodes -keyout key.pem -out csr.pem
