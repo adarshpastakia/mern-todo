@@ -105,9 +105,11 @@ class App extends Component {
   render() {
     return (
       <div className="app-container">
-        <h1>ExpressJS Routing Tester
-          <a href="swagger" target="_blank">Open Swagger</a>
-        </h1>
+        <header>
+          <h1>ExpressJS Routing Tester
+            <a href="swagger" target="_blank">Open Swagger</a>
+          </h1>
+        </header>
 
         <div className="container">
           <h3>Authenticate</h3>

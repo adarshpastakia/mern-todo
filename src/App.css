@@ -1,6 +1,15 @@
 .app-container {
   width: 100vw;
   min-height: 100vh;
+  padding-top: 85px;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 9;
 }
 
 h1 {
@@ -51,6 +60,7 @@ button:active {
   color: #78B742;
   font-weight: bold;
 }
+
 .fail {
   color: #E84236;
   font-weight: bold;
