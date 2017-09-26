@@ -16,13 +16,15 @@ router.post('/login', (req, res) => {
     // respond with auth token
     res.json({username: req.body.username, token: token});
   } else {
-    res.status(400).json(errors.INVALID_CREDENTIALS);
+    res
+      .status(errors.INVALID_CREDENTIALS.code)
+      .json(errors.INVALID_CREDENTIALS);
   }
 });
 
 router.use('/users', require('./_user'));
 
 // return 404 when route not found
-router.use('*', (req, res) => res.status(404).json(errors.UNKNOWN_ROUTE));
+router.use('*', (req, res) => res.status(errors.UNKNOWN_ROUTE.code).json(errors.UNKNOWN_ROUTE));
 
 module.exports = router;

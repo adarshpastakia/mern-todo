@@ -22,13 +22,13 @@ const validator = (req, res, next) => {
   if (ignoreApi.indexOf(req.path) === -1) {
     const auth = req.headers['authorization'] || 'undefined';
     if (auth === 'undefined' || auth === 'null')
-      return res.status(401).json(errors.UNAUTHORIZED);
+      return res.status(errors.UNAUTHORIZED.code).json(errors.UNAUTHORIZED);
 
     // check authorization header
     const creds = new Buffer(auth.split(' ').pop(), 'base64').toString('ascii').split(':');
 
     if (!validate(creds[0], creds[1]))
-      return res.status(401).json(errors.UNAUTHORIZED);
+      return res.status(errors.UNAUTHORIZED.code).json(errors.UNAUTHORIZED);
     }
 
   next();
