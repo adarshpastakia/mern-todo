@@ -34,7 +34,7 @@ hr {
 
 input {
   font-size: 1.2em;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   width: 25rem;
   background: #fafafe;
 }
@@ -44,7 +44,7 @@ button {
   background: #78B742;
   color: #FFFFFF;
   font-size: 1rem;
-  padding: .5em 1rem;
+  padding: 0.5rem 1rem;
   border: 1px solid #6fa93d;
 }
 
@@ -54,6 +54,33 @@ button:hover {
 
 button:active {
   background: #659a38;
+}
+
+.request-indicator {
+  width: 1em;
+  height: 1em;
+  font-size: 2em;
+  margin: 0 1rem;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.request-indicator:after {
+  content: '\2740';
+  width: 1em;
+  line-height: 1em;
+  display: block;
+  text-align: center;
+  animation: rotate 5s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .pass {

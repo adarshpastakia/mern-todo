@@ -9,14 +9,19 @@ class App extends Component {
     authState: null,
     usersState: null,
     userState: null,
-    token: ''
+    token: '',
+    requesting: null
   }
-  baseUrl = '/api'
+  baseUrl = process.env.production
+    ? '/api'
+    : 'https://localhost:8443/api';
+
   testAuthenticator = (bad) => {
     const body = {
       username: 'user@email.com',
       password: 'password'
     }
+    this.setState({requesting: 'auth'});
     fetch(`${this.baseUrl}/login`, {
       method: 'post',
       headers: {
@@ -33,12 +38,14 @@ class App extends Component {
       return r.json();
     }).then(r => {
       this.setState({
+        requesting: null,
         token: r.token,
         authState: true,
         auth: `${JSON.stringify(r, null, 4)}`
       });
     }).catch(e => {
       this.setState({
+        requesting: null,
         authState: false,
         auth: `${JSON.stringify(e, null, 4)}`
       });
@@ -46,6 +53,7 @@ class App extends Component {
   }
   testUsers = (bad) => {
     const creds = `Basic ${btoa('user@email.com:' + document.getElementById('authToken').value)}`
+    this.setState({requesting: 'users'});
     fetch(`${this.baseUrl}/users`, {
       method: 'get',
       headers: {
@@ -61,11 +69,13 @@ class App extends Component {
       return r.json();
     }).then(r => {
       this.setState({
+        requesting: null,
         usersState: true,
         users: `${JSON.stringify(r, null, 4)}`
       });
     }).catch(e => {
       this.setState({
+        requesting: null,
         usersState: false,
         users: `${JSON.stringify(e, null, 4)}`
       });
@@ -74,6 +84,7 @@ class App extends Component {
 
   testUser = (bad) => {
     const creds = `Basic ${btoa('user@email.com:' + document.getElementById('authToken').value)}`
+    this.setState({requesting: 'user'});
     fetch(`${this.baseUrl}/users${bad === 2
       ? 'ss'
       : ''}/3`, {
@@ -91,11 +102,13 @@ class App extends Component {
       return r.json();
     }).then(r => {
       this.setState({
+        requesting: null,
         userState: true,
         user: `${JSON.stringify(r, null, 4)}`
       });
     }).catch(e => {
       this.setState({
+        requesting: null,
         userState: false,
         user: `${JSON.stringify(e, null, 4)}`
       });
@@ -119,6 +132,7 @@ class App extends Component {
           <div>
             <button onClick={() => this.testAuthenticator(true)}>Send bad Request</button>
             <button onClick={() => this.testAuthenticator()}>Send actual Request</button>
+            {this.state.requesting === 'auth' && <div className="request-indicator"></div>}
           </div>
           <h5>Response</h5>
           <div>
@@ -133,6 +147,7 @@ class App extends Component {
           <div>
             <button onClick={() => this.testUsers(true)}>Send unauthorized Request</button>
             <button onClick={() => this.testUsers()}>Send actual Request</button>
+            {this.state.requesting === 'users' && <div className="request-indicator"></div>}
           </div>
           <h5>Response</h5>
           <div>
@@ -149,6 +164,7 @@ class App extends Component {
             <button onClick={() => this.testUser(true)}>Send unauthorized Request</button>
             <button onClick={() => this.testUser(2)}>Send bad Route</button>
             <button onClick={() => this.testUser()}>Send actual Request</button>
+            {this.state.requesting === 'user' && <div className="request-indicator"></div>}
           </div>
           <h5>Response</h5>
           <div>
