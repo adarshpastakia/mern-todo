@@ -12,7 +12,7 @@ class App extends Component {
     token: '',
     requesting: null
   }
-  baseUrl = process.env.MERN_TODO_API || 'https://localhost:8443/api';
+  baseUrl = '/api';
 
   testAuthenticator = (bad) => {
     const body = {
